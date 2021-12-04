@@ -12,7 +12,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        setRoot()
         return true
+    }
+
+    func setRoot() {
+        let vc = UIStoryboard.Main.instantiateViewController(withIdentifier: "DocumentListViewController")
+        window?.rootViewController = UINavigationController(rootViewController: vc)
+        window?.makeKeyAndVisible()
     }
 }
