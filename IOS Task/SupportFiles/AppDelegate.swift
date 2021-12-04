@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func setRoot() {
         let vc = UIStoryboard.Main.instantiateViewController(withIdentifier: "DocumentListViewController")
-        window?.rootViewController = UINavigationController(rootViewController: vc)
+        window?.rootViewController = AppNavigationController(rootViewController: vc)
         window?.makeKeyAndVisible()
     }
 }

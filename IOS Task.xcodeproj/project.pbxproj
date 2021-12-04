@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		62B2BB00275BBF3100FDF3BE /* URLEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B2BAFF275BBF3100FDF3BE /* URLEndPoint.swift */; };
 		62B2BB03275BC07B00FDF3BE /* UIStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B2BB02275BC07B00FDF3BE /* UIStoryboard.swift */; };
+		62B2BB06275BC57B00FDF3BE /* AppNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B2BB05275BC57B00FDF3BE /* AppNavigationController.swift */; };
 		62B43A6B275A7A1200F07C63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B43A6A275A7A1200F07C63 /* AppDelegate.swift */; };
 		62B43A6F275A7A1200F07C63 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B43A6E275A7A1200F07C63 /* ViewController.swift */; };
 		62B43A72275A7A1200F07C63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62B43A70275A7A1200F07C63 /* Main.storyboard */; };
@@ -46,6 +47,7 @@
 /* Begin PBXFileReference section */
 		62B2BAFF275BBF3100FDF3BE /* URLEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLEndPoint.swift; sourceTree = "<group>"; };
 		62B2BB02275BC07B00FDF3BE /* UIStoryboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryboard.swift; sourceTree = "<group>"; };
+		62B2BB05275BC57B00FDF3BE /* AppNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigationController.swift; sourceTree = "<group>"; };
 		62B43A67275A7A1200F07C63 /* IOS Task.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IOS Task.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		62B43A6A275A7A1200F07C63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		62B43A6E275A7A1200F07C63 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -98,6 +100,14 @@
 				62B2BB02275BC07B00FDF3BE /* UIStoryboard.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		62B2BB04275BC57400FDF3BE /* AppNavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				62B2BB05275BC57B00FDF3BE /* AppNavigationController.swift */,
+			);
+			path = AppNavigationController;
 			sourceTree = "<group>";
 		};
 		62B43A5E275A7A1200F07C63 = {
@@ -206,6 +216,7 @@
 		62B43AA0275A7B8A00F07C63 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				62B2BB04275BC57400FDF3BE /* AppNavigationController */,
 				62B43A6E275A7A1200F07C63 /* ViewController.swift */,
 			);
 			path = ViewControllers;
@@ -371,6 +382,7 @@
 				62B43AA4275A7C1000F07C63 /* NetworkManager.swift in Sources */,
 				62B43A6F275A7A1200F07C63 /* ViewController.swift in Sources */,
 				62FDCAE8275B80B2009F8AD1 /* NetworkConstants.swift in Sources */,
+				62B2BB06275BC57B00FDF3BE /* AppNavigationController.swift in Sources */,
 				62FDCAE6275B7D63009F8AD1 /* URLEncoding.swift in Sources */,
 				62B43A6B275A7A1200F07C63 /* AppDelegate.swift in Sources */,
 			);
