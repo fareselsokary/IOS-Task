@@ -5,16 +5,15 @@
 //  Created by fares on 03/12/2021.
 //
 
+import Combine
 import Foundation
 
 // MARK: - Custom Error enum that we'll use in case
 
 enum NetworkError: Error {
     case noInternet
-    case apiFailure(error: String?)
-    case invalidResponse
     case invalidURL
-    case decodingError(error: String?)
+    case invalidResponse(_ error: String?)
 }
 
 // MARK: - An enum for various HTTPMethod. I've implemented GET and POST. I'll update the code and add the rest shortly :D
@@ -34,34 +33,44 @@ typealias Parameters = [String: Any]
 // MARK: - protocol contain all API request methods
 
 fileprivate protocol APIRequestProtocol {
-    static func makeRequest<T: Codable>(session: URLSession, request: URLRequest, model: T.Type, onCompletion: @escaping (Result<T, NetworkError>) -> Void)
-    static func request<T: Codable>(path: String, httpMethod: HTTPMethod, parameters: Parameters?, headers: HTTPHeaders?, onCompletion: @escaping (Result<T, NetworkError>) -> Void)
-    static func parseResponse<T>(data: Data?, onCompletion: @escaping (Result<T, NetworkError>) -> Void) where T: Codable
+    func makeRequest<T: Codable>(session: URLSession, request: URLRequest) -> AnyPublisher<T, NetworkError>
+    func request<T: Codable>(path: String, httpMethod: HTTPMethod, parameters: Parameters?, headers: HTTPHeaders?) -> AnyPublisher<T, NetworkError>
 }
 
-fileprivate enum APIRequestManager: APIRequestProtocol {
+fileprivate class APIRequestManager: APIRequestProtocol {
+    // create single entry for APIRequestManager
+    static let shared = APIRequestManager()
+
+    // make init privarte to prevent any other instance from APIRequestManager
+    private init() {}
+}
+
+extension APIRequestManager {
     // This function calls the URLRequest passed to it, maps the result and returns it
-    fileprivate static func makeRequest<T: Codable>(session: URLSession, request: URLRequest, model: T.Type, onCompletion: @escaping (Result<T, NetworkError>) -> Void) {
-        session.dataTask(with: request) { data, _, error in
-            if error != nil && data != nil {
-                parseResponse(data: data, onCompletion: onCompletion)
-                return
-            } else if error != nil {
-                onCompletion(.failure(.apiFailure(error: error?.localizedDescription)))
-                return
-            } else {
-                parseResponse(data: data, onCompletion: onCompletion)
-                return
+    fileprivate func makeRequest<T: Codable>(session: URLSession, request: URLRequest) -> AnyPublisher<T, NetworkError> {
+        return session.dataTaskPublisher(for: request)
+            .tryMap { element -> Data in
+                guard let httpResponse = element.response as? HTTPURLResponse,
+                      httpResponse.statusCode == 200 else {
+                    throw NetworkError.invalidResponse("Server error")
+                }
+                return element.data
             }
-
-        }.resume()
+            .decode(type: T.self, decoder: JSONDecoder())
+            .mapError { error in
+                NetworkError.invalidResponse(error.localizedDescription)
+            }
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
     }
+}
 
+extension APIRequestManager {
     // create URLRequest then call 'makeRequest' to make api using URLSession
-    static func request<T>(path: String, httpMethod: HTTPMethod, parameters: Parameters?, headers: HTTPHeaders?, onCompletion: @escaping (Result<T, NetworkError>) -> Void) where T: Codable {
+    fileprivate func request<T: Codable>(path: String, httpMethod: HTTPMethod, parameters: Parameters?, headers: HTTPHeaders?) -> AnyPublisher<T, NetworkError> {
         // check if url is valid else return invalid url state
         guard let url = URL(string: path) else {
-            return onCompletion(.failure(.invalidURL))
+            return AnyPublisher(Fail<T, NetworkError>(error: .invalidURL))
         }
 
         // get instance from URLSession
@@ -83,44 +92,16 @@ fileprivate enum APIRequestManager: APIRequestProtocol {
             request.httpBody = jsonData
         }
         // create URLSession request
-        makeRequest(session: session, request: request, model: T.self, onCompletion: onCompletion)
-    }
-}
-
-extension APIRequestManager {
-    fileprivate static func parseResponse<T>(data: Data?, onCompletion: @escaping (Result<T, NetworkError>) -> Void) where T: Codable {
-        if let responseData = data {
-            do {
-                if let json = try JSONSerialization.jsonObject(with: responseData, options: .mutableContainers)
-                    as? Parameters {
-                    let jsonData = try JSONSerialization.data(withJSONObject: json)
-                    let response = try JSONDecoder().decode(T.self, from: jsonData)
-                    onCompletion(.success(response))
-
-                    // if the response is an `Array of Objects`
-                } else if let json = try JSONSerialization.jsonObject(with: responseData, options: .mutableContainers)
-                    as? [Parameters] {
-                    let jsonData = try JSONSerialization.data(withJSONObject: json)
-                    let response = try JSONDecoder().decode(T.self, from: jsonData)
-                    onCompletion(.success(response))
-                } else {
-                    onCompletion(.failure(NetworkError.invalidResponse))
-                    return
-                }
-            } catch {
-                onCompletion(.failure(NetworkError.decodingError(error: error.localizedDescription)))
-                return
-            }
-        }
+        return makeRequest(session: session, request: request)
     }
 }
 
 class NetworkManager {
-    static func request<T>(path: URLEncoding, httpMethod: HTTPMethod, returnType: T.Type, parameters: Parameters? = nil, headers: HTTPHeaders? = nil, onCompletion: @escaping (Result<T, NetworkError>) -> Void) where T: Codable {
+    static func request<T>(path: URLEncoding, httpMethod: HTTPMethod, returnType: T.Type, parameters: Parameters? = nil, headers: HTTPHeaders? = nil) -> AnyPublisher<T, NetworkError> where T: Codable {
         if Reachability.isConnectedToNetwork() {
-            APIRequestManager.request(path: path.value, httpMethod: httpMethod, parameters: parameters, headers: headers, onCompletion: onCompletion)
+            return APIRequestManager.shared.request(path: path.value, httpMethod: httpMethod, parameters: parameters, headers: headers)
         } else {
-            onCompletion(.failure(.noInternet))
+            return AnyPublisher(Fail<T, NetworkError>(error: .noInternet))
         }
     }
 }
