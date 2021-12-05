@@ -12,7 +12,7 @@ import Foundation
 
 enum NetworkError: Error {
     case noInternet
-    case invalidURL
+    case apiFailure
     case invalidResponse(_ error: String?)
 }
 
@@ -49,13 +49,7 @@ extension APIRequestManager {
     // This function calls the URLRequest passed to it, maps the result and returns it
     fileprivate func makeRequest<T: Codable>(session: URLSession, request: URLRequest) -> AnyPublisher<T, NetworkError> {
         return session.dataTaskPublisher(for: request)
-            .tryMap { element -> Data in
-                guard let httpResponse = element.response as? HTTPURLResponse,
-                      httpResponse.statusCode == 200 else {
-                    throw NetworkError.invalidResponse("Server error")
-                }
-                return element.data
-            }
+            .tryMap { $0.data }
             .decode(type: T.self, decoder: JSONDecoder())
             .mapError { error in
                 NetworkError.invalidResponse(error.localizedDescription)
@@ -70,7 +64,7 @@ extension APIRequestManager {
     fileprivate func request<T: Codable>(path: String, httpMethod: HTTPMethod, parameters: Parameters?, headers: HTTPHeaders?) -> AnyPublisher<T, NetworkError> {
         // check if url is valid else return invalid url state
         guard let url = URL(string: path) else {
-            return AnyPublisher(Fail<T, NetworkError>(error: .invalidURL))
+            return AnyPublisher(Fail<T, NetworkError>(error: .apiFailure))
         }
 
         // get instance from URLSession
@@ -86,10 +80,14 @@ extension APIRequestManager {
         request.httpMethod = httpMethod.rawValue
 
         // convert request parameters from dictionary to data
-        if let parms = parameters,
-           let jsonData = try? JSONSerialization.data(withJSONObject: parms) {
-            // add request http body data
-            request.httpBody = jsonData
+        if let parms = parameters {
+            do {
+                let jsonData = try JSONSerialization.data(withJSONObject: parms)
+                // add request http body data
+                request.httpBody = jsonData
+            } catch {
+                return AnyPublisher(Fail<T, NetworkError>(error: .invalidResponse(error.localizedDescription)))
+            }
         }
         // create URLSession request
         return makeRequest(session: session, request: request)
