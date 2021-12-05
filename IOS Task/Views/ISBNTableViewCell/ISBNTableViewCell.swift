@@ -50,6 +50,10 @@ class ISBNTableViewCell: UITableViewCell {
 // MARK: -
 
 extension ISBNTableViewCell: ConfigurableCell {
+    static var reuseIdentifier: String {
+        return "ISBNTableViewCell"
+    }
+
     func configure(data: ISBNDetails) {
         isbnDetails = data
         isbnTitle.text = data.details?.title

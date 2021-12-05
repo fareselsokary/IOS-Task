@@ -49,7 +49,16 @@ extension APIRequestManager {
     // This function calls the URLRequest passed to it, maps the result and returns it
     fileprivate func makeRequest<T: Decodable>(session: URLSession, request: URLRequest) -> AnyPublisher<T, NetworkError> {
         return session.dataTaskPublisher(for: request)
-            .tryMap { $0.data }
+            .tryMap({ (data: Data, response: URLResponse) in
+                guard let httpResponse = response as? HTTPURLResponse,
+                      httpResponse.statusCode == 200 else {
+                    throw NetworkError.apiFailure
+                }
+                return data
+            })
+            .mapError { error in
+                NetworkError.invalidResponse(error.localizedDescription)
+            }
             .decode(type: T.self, decoder: JSONDecoder())
             .mapError { error in
                 NetworkError.invalidResponse(error.localizedDescription)

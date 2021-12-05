@@ -9,14 +9,20 @@ import Combine
 import UIKit
 
 class DocumentListViewController: UIViewController {
+    // MARK: -
+
     @IBOutlet weak var searchTypeLabel: UILabel!
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
+
+    // MARK: -
 
     private let cellIdentifier = "Cell"
     private var documents = [Document]()
     private var cancellables = Set<AnyCancellable>()
     private var viewModel: DocumentListViewModel?
+
+    // MARK: -
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,10 +30,14 @@ class DocumentListViewController: UIViewController {
         bindViewModel()
     }
 
+    // MARK: -
+
     @IBAction func searchTypeButton(_ sender: Any) {
         showSearchTypeAlert()
     }
 }
+
+// MARK: -
 
 extension DocumentListViewController {
     private func setupUI() {
@@ -48,6 +58,8 @@ extension DocumentListViewController {
     }
 }
 
+// MARK: - show Search Type Alert
+
 extension DocumentListViewController {
     private func showSearchTypeAlert() {
         alertController(withTitle: "Search type",
@@ -60,6 +72,8 @@ extension DocumentListViewController {
         }
     }
 }
+
+// MARK: - UITableViewData Source
 
 extension DocumentListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -88,6 +102,8 @@ extension DocumentListViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableView Delegate
+
 extension DocumentListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let vc = UIStoryboard.Main.instantiateViewController(withIdentifier: "DocumentDetailsViewController") as? DocumentDetailsViewController {
@@ -96,32 +112,45 @@ extension DocumentListViewController: UITableViewDelegate {
             navigationController?.pushViewController(vc, animated: true)
         }
     }
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row >= documents.count - 2 {
+            viewModel?.getNextPage()
+        }
+    }
 }
+
+// MARK: - UITextField Delegate
 
 extension DocumentListViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        guard let text = textField.text, !text.isEmpty else { return false }
+        guard let text = textField.text, !text.isBlank else { return false }
         searchTextField.resignFirstResponder()
-        viewModel?.getDocuments(with: text)
+        viewModel?.search(by: text)
         return true
     }
 }
 
+// MARK: - Document Details View Controller Delegate
+
 extension DocumentListViewController: DocumentDetailsViewControllerDelegate {
     func didSelectTitle(_ title: String?) {
-        guard let text = title, !text.isEmpty else { return }
-        searchTextField.text = text
-        viewModel?.changeSearchType(.title)
-        viewModel?.getDocuments(with: text)
+        handelSearchBySelection(searchType: .title, keyWord: title)
     }
 
     func didSelectAuthorName(_ name: String?) {
-        guard let text = name, !text.isEmpty else { return }
+        handelSearchBySelection(searchType: .author, keyWord: name)
+    }
+
+    private func handelSearchBySelection(searchType: SearchType, keyWord: String?) {
+        guard let text = keyWord, !text.isBlank else { return }
         searchTextField.text = text
-        viewModel?.changeSearchType(.author)
-        viewModel?.getDocuments(with: text)
+        viewModel?.changeSearchType(searchType)
+        viewModel?.search(by: text)
     }
 }
+
+// MARK: - bindViewModel
 
 extension DocumentListViewController {
     private func bindViewModel() {
@@ -162,7 +191,7 @@ extension DocumentListViewController {
             .sink { error in
                 print(error)
             } receiveValue: { [weak self] error in
-                guard let self = self, !error.isEmpty else { return }
+                guard let self = self, !error.isBlank else { return }
                 self.alertMessage(title: "", userMessage: error, complition: nil)
             }.store(in: &cancellables)
     }

@@ -156,7 +156,7 @@ extension DocumentDetailsViewController {
             .sink { error in
                 print(error)
             } receiveValue: { [weak self] error in
-                guard let self = self, !error.isEmpty else { return }
+                guard let self = self, !error.isBlank else { return }
                 self.alertMessage(title: "", userMessage: error, complition: nil)
             }.store(in: &cancellables)
     }

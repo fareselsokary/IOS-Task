@@ -27,6 +27,7 @@
 		62B2BB28275CDEB600FDF3BE /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B2BB27275CDEB600FDF3BE /* UIImageViewExtension.swift */; };
 		62B2BB2B275CE8CB00FDF3BE /* DocumentDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B2BB29275CE8CB00FDF3BE /* DocumentDescriptionTableViewCell.swift */; };
 		62B2BB2C275CE8CB00FDF3BE /* DocumentDescriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62B2BB2A275CE8CB00FDF3BE /* DocumentDescriptionTableViewCell.xib */; };
+		62B2BB2F275CFDB800FDF3BE /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B2BB2E275CFDB800FDF3BE /* String.swift */; };
 		62B43A6B275A7A1200F07C63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B43A6A275A7A1200F07C63 /* AppDelegate.swift */; };
 		62B43A6F275A7A1200F07C63 /* DocumentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B43A6E275A7A1200F07C63 /* DocumentListViewController.swift */; };
 		62B43A72275A7A1200F07C63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62B43A70275A7A1200F07C63 /* Main.storyboard */; };
@@ -82,6 +83,7 @@
 		62B2BB27275CDEB600FDF3BE /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		62B2BB29275CE8CB00FDF3BE /* DocumentDescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentDescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		62B2BB2A275CE8CB00FDF3BE /* DocumentDescriptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DocumentDescriptionTableViewCell.xib; sourceTree = "<group>"; };
+		62B2BB2E275CFDB800FDF3BE /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		62B43A67275A7A1200F07C63 /* IOS Task.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IOS Task.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		62B43A6A275A7A1200F07C63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		62B43A6E275A7A1200F07C63 /* DocumentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentListViewController.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				62B2BB12275CA2B400FDF3BE /* UITextFieldExtension.swift */,
 				62B2BB14275CA4F100FDF3BE /* UiViewControllerExtension.swift */,
 				62B2BB27275CDEB600FDF3BE /* UIImageViewExtension.swift */,
+				62B2BB2E275CFDB800FDF3BE /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -484,6 +487,7 @@
 				62B2BB2B275CE8CB00FDF3BE /* DocumentDescriptionTableViewCell.swift in Sources */,
 				62B2BB08275BCA0600FDF3BE /* UIViewExtension.swift in Sources */,
 				62B2BB06275BC57B00FDF3BE /* AppNavigationController.swift in Sources */,
+				62B2BB2F275CFDB800FDF3BE /* String.swift in Sources */,
 				62FDCAE6275B7D63009F8AD1 /* URLEncoding.swift in Sources */,
 				62B2BB24275CD71A00FDF3BE /* ConfigurableCell.swift in Sources */,
 				62B43A6B275A7A1200F07C63 /* AppDelegate.swift in Sources */,

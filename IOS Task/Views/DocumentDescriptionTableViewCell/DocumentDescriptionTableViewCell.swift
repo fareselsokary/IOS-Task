@@ -47,6 +47,10 @@ class DocumentDescriptionTableViewCell: UITableViewCell {
 // MARK: -
 
 extension DocumentDescriptionTableViewCell: ConfigurableCell {
+    static var reuseIdentifier: String {
+        return "DocumentDescriptionTableViewCell"
+    }
+
     func configure(data: Document) {
         document = data
         documenttitle.text = data.title

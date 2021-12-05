@@ -36,14 +36,22 @@ class DocumentListViewModel {
 
     @Published private(set) var searchType: SearchType = .all
 
+    @Published private(set) var searchWord = ""
+
+    // MARK: - Properties
+
     private var searchCompletionHandler: ((Subscribers.Completion<NetworkError>) -> Void)!
 
     private var searchValueHandler: ((BaseResponse) -> Void)!
 
-    // MARK: - Properties
+    private let pageSize = 10
+    private var pageNumber = 1
+    private var isLastPage = false
 
     private let apiService: DocumentListServiceType
     private var cancellables = Set<AnyCancellable>()
+
+    // MARK: - init
 
     init(apiService: DocumentListServiceType) {
         self.apiService = apiService
@@ -65,17 +73,61 @@ class DocumentListViewModel {
         }
 
         searchValueHandler = { [weak self] response in
-            self?.documents = response.docs ?? []
+            self?.documents.append(contentsOf: response.docs ?? [])
+            self?.isLastPage = self?.documents.count == response.numFound
         }
+
+        $searchWord
+            .sink { error in
+                print(error)
+            } receiveValue: { [weak self] keyWord in
+                guard !keyWord.isBlank else { return }
+                self?.resetPageNumber()
+                self?.getDocuments(with: keyWord)
+                self?.resetDocumentArray()
+            }.store(in: &cancellables)
     }
 
+    // MARK: - public methods
+
+    /// change current search type
     func changeSearchType(_ type: SearchType) {
         searchType = type
+        guard !searchWord.isBlank else { return }
+        resetPageNumber()
+        getDocuments(with: searchWord)
+        resetDocumentArray()
     }
 
-    // MARK: - get documents by search type
+    /// change search word
+    func search(by keyWord: String) {
+        searchWord = keyWord
+        resetPageNumber()
+    }
 
-    func getDocuments(with keyWord: String) {
+    /// get next page if search type is all document
+    func getNextPage() {
+        guard !isLastPage else { return }
+        pageNumber += 1
+        getDocuments(with: searchWord)
+    }
+
+    // MARK: - private methods
+
+    /// rest page number to 1
+    private func resetPageNumber() {
+        pageNumber = 1
+        isLastPage = false
+    }
+
+    // remove all element from array
+    private func resetDocumentArray() {
+        documents.removeAll()
+    }
+
+    /// get documents by search type
+    private func getDocuments(with keyWord: String) {
+        isLoading = pageNumber == 1
         switch searchType {
         case .all:
             searchInAllDocuments(keyWord: keyWord)
@@ -86,29 +138,26 @@ class DocumentListViewModel {
         }
     }
 
-    // search in all fields by keyword entered by user
+    /// search in all fields by keyword entered by user
     private func searchInAllDocuments(keyWord: String) {
-        isLoading = true
         apiService
-            .getDocuments(keyWord: keyWord)
+            .getDocuments(keyWord: keyWord, pageNumber: "\(pageNumber)", pageSize: "\(pageSize)")
             .sink(receiveCompletion: searchCompletionHandler, receiveValue: searchValueHandler)
             .store(in: &cancellables)
     }
 
-    // search in all documents by document title
+    /// search in all documents by document title
     private func getDcoumentsByTitle(keyWord: String) {
-        isLoading = true
         apiService
-            .getDocuments(title: keyWord)
+            .getDocuments(title: keyWord, pageNumber: "\(pageNumber)", pageSize: "\(pageSize)")
             .sink(receiveCompletion: searchCompletionHandler, receiveValue: searchValueHandler)
             .store(in: &cancellables)
     }
 
-    // get all dcument by auther name
+    /// get all dcument by auther name
     private func getDocumentsByAuthor(keyWord: String) {
-        isLoading = true
         apiService
-            .getAutherDocuments(autherName: keyWord)
+            .getAutherDocuments(autherName: keyWord, pageNumber: "\(pageNumber)", pageSize: "\(pageSize)")
             .sink(receiveCompletion: searchCompletionHandler, receiveValue: searchValueHandler)
             .store(in: &cancellables)
     }
