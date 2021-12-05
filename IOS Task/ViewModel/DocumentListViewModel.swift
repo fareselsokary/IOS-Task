@@ -45,9 +45,9 @@ class DocumentListViewModel {
     private var searchValueHandler: ((BaseResponse) -> Void)!
 
     private let pageSize = 10
-    private var pageNumber = 1
-    private var isLastPage = false
-    private var isStillLoadingRequest = false
+    private(set) var pageNumber = 1
+    private(set) var isLastPage = false
+    private(set) var isStillLoadingRequest = false
 
     private let apiService: DocumentListServiceType
     private var cancellables = Set<AnyCancellable>()

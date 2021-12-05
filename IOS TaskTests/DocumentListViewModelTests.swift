@@ -5,29 +5,37 @@
 //  Created by fares on 05/12/2021.
 //
 
+@testable import IOS_Task
 import XCTest
 
 class DocumentListViewModelTests: XCTestCase {
+    var viewModel: DocumentListViewModel!
+    var apiService: DocumentListServiceType!
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        XCUIApplication().launch()
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+    override func setUp() {
+        apiService = DocumentListService()
+        viewModel = DocumentListViewModel(apiService: apiService)
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func testSearch() throws {
+        viewModel.search(by: "gg")
+        XCTAssertNotEqual(viewModel.pageNumber, 2)
+        XCTAssertEqual(viewModel.documents.count, 0)
     }
 
-    func testExample() throws {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testChangeSearchType() throws {
+        viewModel.changeSearchType(.all)
+        XCTAssertEqual(viewModel.searchType, .all)
+        XCTAssertNotEqual(viewModel.pageNumber, 2)
     }
 
+    func testResetPageNumber() throws {
+        viewModel.getNextPage()
+        XCTAssertGreaterThan(viewModel.pageNumber, 1)
+    }
+
+    override func tearDown() {
+        viewModel = nil
+        apiService = nil
+    }
 }
