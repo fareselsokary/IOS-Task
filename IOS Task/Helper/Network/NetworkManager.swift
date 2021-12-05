@@ -33,8 +33,8 @@ typealias Parameters = [String: Any]
 // MARK: - protocol contain all API request methods
 
 fileprivate protocol APIRequestProtocol {
-    func makeRequest<T: Codable>(session: URLSession, request: URLRequest) -> AnyPublisher<T, NetworkError>
-    func request<T: Codable>(path: String, httpMethod: HTTPMethod, parameters: Parameters?, headers: HTTPHeaders?) -> AnyPublisher<T, NetworkError>
+    func makeRequest<T: Decodable>(session: URLSession, request: URLRequest) -> AnyPublisher<T, NetworkError>
+    func request<T: Decodable>(path: String, httpMethod: HTTPMethod, parameters: Parameters?, headers: HTTPHeaders?) -> AnyPublisher<T, NetworkError>
 }
 
 fileprivate class APIRequestManager: APIRequestProtocol {
@@ -47,7 +47,7 @@ fileprivate class APIRequestManager: APIRequestProtocol {
 
 extension APIRequestManager {
     // This function calls the URLRequest passed to it, maps the result and returns it
-    fileprivate func makeRequest<T: Codable>(session: URLSession, request: URLRequest) -> AnyPublisher<T, NetworkError> {
+    fileprivate func makeRequest<T: Decodable>(session: URLSession, request: URLRequest) -> AnyPublisher<T, NetworkError> {
         return session.dataTaskPublisher(for: request)
             .tryMap { $0.data }
             .decode(type: T.self, decoder: JSONDecoder())
@@ -61,7 +61,7 @@ extension APIRequestManager {
 
 extension APIRequestManager {
     // create URLRequest then call 'makeRequest' to make api using URLSession
-    fileprivate func request<T: Codable>(path: String, httpMethod: HTTPMethod, parameters: Parameters?, headers: HTTPHeaders?) -> AnyPublisher<T, NetworkError> {
+    fileprivate func request<T: Decodable>(path: String, httpMethod: HTTPMethod, parameters: Parameters?, headers: HTTPHeaders?) -> AnyPublisher<T, NetworkError> {
         // check if url is valid else return invalid url state
         guard let url = URL(string: path) else {
             return AnyPublisher(Fail<T, NetworkError>(error: .apiFailure))
@@ -95,7 +95,7 @@ extension APIRequestManager {
 }
 
 class NetworkManager {
-    static func request<T>(path: URLEncoding, httpMethod: HTTPMethod, returnType: T.Type, parameters: Parameters? = nil, headers: HTTPHeaders? = nil) -> AnyPublisher<T, NetworkError> where T: Codable {
+    static func request<T>(path: URLEncoding, httpMethod: HTTPMethod, returnType: T.Type, parameters: Parameters? = nil, headers: HTTPHeaders? = nil) -> AnyPublisher<T, NetworkError> where T: Decodable {
         if Reachability.isConnectedToNetwork() {
             return APIRequestManager.shared.request(path: path.value, httpMethod: httpMethod, parameters: parameters, headers: headers)
         } else {
