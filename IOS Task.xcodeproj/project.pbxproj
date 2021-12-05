@@ -15,7 +15,6 @@
 		62B2BB0C275BFD4B00FDF3BE /* DocumentListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B2BB0B275BFD4B00FDF3BE /* DocumentListService.swift */; };
 		62B2BB0F275C172200FDF3BE /* DocumentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B2BB0E275C172200FDF3BE /* DocumentListViewModel.swift */; };
 		62B2BB11275C9DE100FDF3BE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B2BB10275C9DE100FDF3BE /* Constants.swift */; };
-		62B2BB13275CA2B400FDF3BE /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B2BB12275CA2B400FDF3BE /* UITextFieldExtension.swift */; };
 		62B2BB15275CA4F100FDF3BE /* UiViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B2BB14275CA4F100FDF3BE /* UiViewControllerExtension.swift */; };
 		62B2BB18275CB90700FDF3BE /* DocumentDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B2BB17275CB90700FDF3BE /* DocumentDetailsViewController.swift */; };
 		62B2BB1C275CBFEC00FDF3BE /* ISBNTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B2BB1A275CBFEC00FDF3BE /* ISBNTableViewCell.swift */; };
@@ -28,6 +27,7 @@
 		62B2BB2B275CE8CB00FDF3BE /* DocumentDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B2BB29275CE8CB00FDF3BE /* DocumentDescriptionTableViewCell.swift */; };
 		62B2BB2C275CE8CB00FDF3BE /* DocumentDescriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 62B2BB2A275CE8CB00FDF3BE /* DocumentDescriptionTableViewCell.xib */; };
 		62B2BB2F275CFDB800FDF3BE /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B2BB2E275CFDB800FDF3BE /* String.swift */; };
+		62B2BB31275D1C5900FDF3BE /* DocumentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B2BB30275D1C5900FDF3BE /* DocumentTableViewCell.swift */; };
 		62B43A6B275A7A1200F07C63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B43A6A275A7A1200F07C63 /* AppDelegate.swift */; };
 		62B43A6F275A7A1200F07C63 /* DocumentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B43A6E275A7A1200F07C63 /* DocumentListViewController.swift */; };
 		62B43A72275A7A1200F07C63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62B43A70275A7A1200F07C63 /* Main.storyboard */; };
@@ -71,7 +71,6 @@
 		62B2BB0B275BFD4B00FDF3BE /* DocumentListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentListService.swift; sourceTree = "<group>"; };
 		62B2BB0E275C172200FDF3BE /* DocumentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentListViewModel.swift; sourceTree = "<group>"; };
 		62B2BB10275C9DE100FDF3BE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		62B2BB12275CA2B400FDF3BE /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
 		62B2BB14275CA4F100FDF3BE /* UiViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiViewControllerExtension.swift; sourceTree = "<group>"; };
 		62B2BB17275CB90700FDF3BE /* DocumentDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentDetailsViewController.swift; sourceTree = "<group>"; };
 		62B2BB1A275CBFEC00FDF3BE /* ISBNTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISBNTableViewCell.swift; sourceTree = "<group>"; };
@@ -84,6 +83,7 @@
 		62B2BB29275CE8CB00FDF3BE /* DocumentDescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentDescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		62B2BB2A275CE8CB00FDF3BE /* DocumentDescriptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DocumentDescriptionTableViewCell.xib; sourceTree = "<group>"; };
 		62B2BB2E275CFDB800FDF3BE /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		62B2BB30275D1C5900FDF3BE /* DocumentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentTableViewCell.swift; sourceTree = "<group>"; };
 		62B43A67275A7A1200F07C63 /* IOS Task.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IOS Task.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		62B43A6A275A7A1200F07C63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		62B43A6E275A7A1200F07C63 /* DocumentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentListViewController.swift; sourceTree = "<group>"; };
@@ -136,7 +136,6 @@
 				62B2BB02275BC07B00FDF3BE /* UIStoryboard.swift */,
 				62B2BB07275BCA0600FDF3BE /* UIViewExtension.swift */,
 				62B2BB09275BFB8500FDF3BE /* UITableViewExtension.swift */,
-				62B2BB12275CA2B400FDF3BE /* UITextFieldExtension.swift */,
 				62B2BB14275CA4F100FDF3BE /* UiViewControllerExtension.swift */,
 				62B2BB27275CDEB600FDF3BE /* UIImageViewExtension.swift */,
 				62B2BB2E275CFDB800FDF3BE /* String.swift */,
@@ -319,6 +318,7 @@
 			children = (
 				62B2BB1E275CBFF300FDF3BE /* ISBNTableViewCell */,
 				62B2BB2D275CE8CF00FDF3BE /* DocumentDescriptionTableViewCell */,
+				62B2BB30275D1C5900FDF3BE /* DocumentTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -470,7 +470,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				62B2BB03275BC07B00FDF3BE /* UIStoryboard.swift in Sources */,
-				62B2BB13275CA2B400FDF3BE /* UITextFieldExtension.swift in Sources */,
 				62B2BB18275CB90700FDF3BE /* DocumentDetailsViewController.swift in Sources */,
 				62B2BB11275C9DE100FDF3BE /* Constants.swift in Sources */,
 				62B2BB00275BBF3100FDF3BE /* URLEndPoint.swift in Sources */,
@@ -490,6 +489,7 @@
 				62B2BB2F275CFDB800FDF3BE /* String.swift in Sources */,
 				62FDCAE6275B7D63009F8AD1 /* URLEncoding.swift in Sources */,
 				62B2BB24275CD71A00FDF3BE /* ConfigurableCell.swift in Sources */,
+				62B2BB31275D1C5900FDF3BE /* DocumentTableViewCell.swift in Sources */,
 				62B43A6B275A7A1200F07C63 /* AppDelegate.swift in Sources */,
 				62B2BB26275CD82C00FDF3BE /* DocumentDetailsViewModel.swift in Sources */,
 				62B2BB0F275C172200FDF3BE /* DocumentListViewModel.swift in Sources */,

@@ -48,7 +48,7 @@ extension DocumentListViewController {
     }
 
     private func setupTableView() {
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
+        tableView.register(DocumentTableViewCell.self, forCellReuseIdentifier: DocumentTableViewCell.reuseIdentifier)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 50
         tableView.delegate = self
@@ -86,19 +86,11 @@ extension DocumentListViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
-        cell = UITableViewCell(style: .subtitle, reuseIdentifier: cellIdentifier)
-        cell.selectionStyle = .none
-        let data = documents[indexPath.row]
-        cell.imageView?.image = UIImage(named: "bell-1")
-        cell.textLabel?.text = data.title
-        cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.font = .systemFont(ofSize: 16, weight: .bold)
-        cell.detailTextLabel?.text = data.authorName?.joined(separator: ", ") ?? data.authorName?.description
-        cell.detailTextLabel?.font = .systemFont(ofSize: 15, weight: .medium)
-        cell.detailTextLabel?.textColor = .lightGray
-        cell.detailTextLabel?.numberOfLines = 0
-        return cell
+        if let cell = tableView.dequeueReusableCell(withIdentifier: DocumentTableViewCell.reuseIdentifier, for: indexPath) as? DocumentTableViewCell {
+            cell.configure(data: documents[indexPath.row])
+            return cell
+        }
+        return UITableViewCell()
     }
 }
 
@@ -106,6 +98,7 @@ extension DocumentListViewController: UITableViewDataSource {
 
 extension DocumentListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        searchTextField.resignFirstResponder()
         if let vc = UIStoryboard.Main.instantiateViewController(withIdentifier: "DocumentDetailsViewController") as? DocumentDetailsViewController {
             vc.document = documents[indexPath.row]
             vc.delegate = self
@@ -143,6 +136,7 @@ extension DocumentListViewController: DocumentDetailsViewControllerDelegate {
     }
 
     private func handelSearchBySelection(searchType: SearchType, keyWord: String?) {
+        searchTextField.resignFirstResponder()
         guard let text = keyWord, !text.isBlank else { return }
         searchTextField.text = text
         viewModel?.changeSearchType(searchType)
