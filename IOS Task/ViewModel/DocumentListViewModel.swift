@@ -47,6 +47,7 @@ class DocumentListViewModel {
     private let pageSize = 10
     private var pageNumber = 1
     private var isLastPage = false
+    private var isStillLoadingRequest = false
 
     private let apiService: DocumentListServiceType
     private var cancellables = Set<AnyCancellable>()
@@ -61,6 +62,7 @@ class DocumentListViewModel {
                 self?.isLoading = false
             case let .failure(error):
                 self?.isLoading = false
+                self?.isStillLoadingRequest = false
                 switch error {
                 case .noInternet:
                     self?.errorMessage = ErrorMessages.noInternet.rawValue
@@ -73,6 +75,7 @@ class DocumentListViewModel {
         }
 
         searchValueHandler = { [weak self] response in
+            self?.isStillLoadingRequest = false
             self?.documents.append(contentsOf: response.docs ?? [])
             self?.isLastPage = self?.documents.count == response.numFound
         }
@@ -127,6 +130,8 @@ class DocumentListViewModel {
 
     /// get documents by search type
     private func getDocuments(with keyWord: String) {
+        guard !isStillLoadingRequest else { return }
+        isStillLoadingRequest = true
         isLoading = pageNumber == 1
         switch searchType {
         case .all:

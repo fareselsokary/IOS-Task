@@ -41,6 +41,9 @@ fileprivate class APIRequestManager: APIRequestProtocol {
     // create single entry for APIRequestManager
     static let shared = APIRequestManager()
 
+    // get instance from URLSession
+    fileprivate let session = URLSession(configuration: .default)
+
     // make init privarte to prevent any other instance from APIRequestManager
     private init() {}
 }
@@ -75,9 +78,6 @@ extension APIRequestManager {
         guard let url = URL(string: path) else {
             return AnyPublisher(Fail<T, NetworkError>(error: .apiFailure))
         }
-
-        // get instance from URLSession
-        let session = URLSession.shared
 
         // create URLRequest instance
         var request = URLRequest(url: url)
