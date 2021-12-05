@@ -90,7 +90,11 @@ extension DocumentListViewController: UITableViewDataSource {
 
 extension DocumentListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //
+        if let vc = UIStoryboard.Main.instantiateViewController(withIdentifier: "DocumentDetailsViewController") as? DocumentDetailsViewController {
+            vc.document = documents[indexPath.row]
+            vc.delegate = self
+            navigationController?.pushViewController(vc, animated: true)
+        }
     }
 }
 
@@ -100,6 +104,22 @@ extension DocumentListViewController: UITextFieldDelegate {
         searchTextField.resignFirstResponder()
         viewModel?.getDocuments(with: text)
         return true
+    }
+}
+
+extension DocumentListViewController: DocumentDetailsViewControllerDelegate {
+    func didSelectTitle(_ title: String?) {
+        guard let text = title, !text.isEmpty else { return }
+        searchTextField.text = text
+        viewModel?.changeSearchType(.title)
+        viewModel?.getDocuments(with: text)
+    }
+
+    func didSelectAuthorName(_ name: String?) {
+        guard let text = name, !text.isEmpty else { return }
+        searchTextField.text = text
+        viewModel?.changeSearchType(.author)
+        viewModel?.getDocuments(with: text)
     }
 }
 

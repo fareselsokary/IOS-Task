@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 // host url for api
 enum URLHost {
     static let base = "http://openlibrary.org/"
@@ -21,6 +20,9 @@ enum URLQuery: String {
     case author /// search by author name
     case page /// page number
     case limit /// page size
+    case bibkeys
+    case format
+    case jscmd
 }
 
 enum CoverImageSize: String {

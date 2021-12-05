@@ -10,7 +10,8 @@ import Foundation
 // API endpoints
 enum URLEndPoint {
     static let search = "search.json"
-    static let isbn = "isbn/%@-%@.jpg"
+    static let isbn = "id/%@-%@.jpg?default=false"
+    static let books = "api/books"
 }
 
 extension URLEndPoint {

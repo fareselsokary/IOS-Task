@@ -42,7 +42,7 @@
                                                     <stackView contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="9uV-Oh-V8U">
                                                         <rect key="frame" x="4" y="16" width="61.5" height="18"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="753" text="Lab\" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pnY-Rs-x9A">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="753" text="All" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pnY-Rs-x9A">
                                                                 <rect key="frame" x="0.0" y="0.0" width="41.5" height="18"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
@@ -141,6 +141,36 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="131.8840579710145" y="59.598214285714285"/>
+        </scene>
+        <!--Document Details View Controller-->
+        <scene sceneID="N7m-Ed-Nwi">
+            <objects>
+                <viewController storyboardIdentifier="DocumentDetailsViewController" id="c0j-fN-oKB" customClass="DocumentDetailsViewController" customModule="IOS_Task" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xij-di-jnv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Rz8-Zj-mJE">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="UJJ-2O-8zz"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Rz8-Zj-mJE" firstAttribute="centerY" secondItem="xij-di-jnv" secondAttribute="centerY" id="7iy-Tl-lzf"/>
+                            <constraint firstItem="Rz8-Zj-mJE" firstAttribute="leading" secondItem="UJJ-2O-8zz" secondAttribute="leading" id="8hV-b4-1ay"/>
+                            <constraint firstItem="Rz8-Zj-mJE" firstAttribute="centerX" secondItem="xij-di-jnv" secondAttribute="centerX" id="HuE-A4-vuj"/>
+                            <constraint firstItem="Rz8-Zj-mJE" firstAttribute="top" secondItem="xij-di-jnv" secondAttribute="top" id="soq-JY-EEQ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="Rz8-Zj-mJE" id="TUh-gL-pab"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ztB-pl-OtV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="907" y="60"/>
         </scene>
     </scenes>
     <resources>
