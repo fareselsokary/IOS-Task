@@ -10,8 +10,15 @@
 		62B2BB00275BBF3100FDF3BE /* URLEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B2BAFF275BBF3100FDF3BE /* URLEndPoint.swift */; };
 		62B2BB03275BC07B00FDF3BE /* UIStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B2BB02275BC07B00FDF3BE /* UIStoryboard.swift */; };
 		62B2BB06275BC57B00FDF3BE /* AppNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B2BB05275BC57B00FDF3BE /* AppNavigationController.swift */; };
+		62B2BB08275BCA0600FDF3BE /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B2BB07275BCA0600FDF3BE /* UIViewExtension.swift */; };
+		62B2BB0A275BFB8500FDF3BE /* UITableViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B2BB09275BFB8500FDF3BE /* UITableViewExtension.swift */; };
+		62B2BB0C275BFD4B00FDF3BE /* DocumentListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B2BB0B275BFD4B00FDF3BE /* DocumentListService.swift */; };
+		62B2BB0F275C172200FDF3BE /* DocumentListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B2BB0E275C172200FDF3BE /* DocumentListViewModel.swift */; };
+		62B2BB11275C9DE100FDF3BE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B2BB10275C9DE100FDF3BE /* Constants.swift */; };
+		62B2BB13275CA2B400FDF3BE /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B2BB12275CA2B400FDF3BE /* UITextFieldExtension.swift */; };
+		62B2BB15275CA4F100FDF3BE /* UiViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B2BB14275CA4F100FDF3BE /* UiViewControllerExtension.swift */; };
 		62B43A6B275A7A1200F07C63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B43A6A275A7A1200F07C63 /* AppDelegate.swift */; };
-		62B43A6F275A7A1200F07C63 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B43A6E275A7A1200F07C63 /* ViewController.swift */; };
+		62B43A6F275A7A1200F07C63 /* DocumentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B43A6E275A7A1200F07C63 /* DocumentListViewController.swift */; };
 		62B43A72275A7A1200F07C63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62B43A70275A7A1200F07C63 /* Main.storyboard */; };
 		62B43A74275A7A1200F07C63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62B43A73275A7A1200F07C63 /* Assets.xcassets */; };
 		62B43A77275A7A1200F07C63 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62B43A75275A7A1200F07C63 /* LaunchScreen.storyboard */; };
@@ -48,9 +55,16 @@
 		62B2BAFF275BBF3100FDF3BE /* URLEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLEndPoint.swift; sourceTree = "<group>"; };
 		62B2BB02275BC07B00FDF3BE /* UIStoryboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryboard.swift; sourceTree = "<group>"; };
 		62B2BB05275BC57B00FDF3BE /* AppNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigationController.swift; sourceTree = "<group>"; };
+		62B2BB07275BCA0600FDF3BE /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		62B2BB09275BFB8500FDF3BE /* UITableViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtension.swift; sourceTree = "<group>"; };
+		62B2BB0B275BFD4B00FDF3BE /* DocumentListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentListService.swift; sourceTree = "<group>"; };
+		62B2BB0E275C172200FDF3BE /* DocumentListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentListViewModel.swift; sourceTree = "<group>"; };
+		62B2BB10275C9DE100FDF3BE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		62B2BB12275CA2B400FDF3BE /* UITextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtension.swift; sourceTree = "<group>"; };
+		62B2BB14275CA4F100FDF3BE /* UiViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UiViewControllerExtension.swift; sourceTree = "<group>"; };
 		62B43A67275A7A1200F07C63 /* IOS Task.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IOS Task.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		62B43A6A275A7A1200F07C63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		62B43A6E275A7A1200F07C63 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		62B43A6E275A7A1200F07C63 /* DocumentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentListViewController.swift; sourceTree = "<group>"; };
 		62B43A71275A7A1200F07C63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		62B43A73275A7A1200F07C63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		62B43A76275A7A1200F07C63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -98,6 +112,10 @@
 			isa = PBXGroup;
 			children = (
 				62B2BB02275BC07B00FDF3BE /* UIStoryboard.swift */,
+				62B2BB07275BCA0600FDF3BE /* UIViewExtension.swift */,
+				62B2BB09275BFB8500FDF3BE /* UITableViewExtension.swift */,
+				62B2BB12275CA2B400FDF3BE /* UITextFieldExtension.swift */,
+				62B2BB14275CA4F100FDF3BE /* UiViewControllerExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -108,6 +126,14 @@
 				62B2BB05275BC57B00FDF3BE /* AppNavigationController.swift */,
 			);
 			path = AppNavigationController;
+			sourceTree = "<group>";
+		};
+		62B2BB0D275C171000FDF3BE /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				62B2BB0E275C172200FDF3BE /* DocumentListViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		62B43A5E275A7A1200F07C63 = {
@@ -133,6 +159,7 @@
 		62B43A69275A7A1200F07C63 /* IOS Task */ = {
 			isa = PBXGroup;
 			children = (
+				62B2BB0D275C171000FDF3BE /* ViewModel */,
 				62B43A9A275A7B4D00F07C63 /* Assets */,
 				62B43A9B275A7B5C00F07C63 /* Helper */,
 				62B43A9C275A7B6500F07C63 /* Model */,
@@ -175,6 +202,7 @@
 			children = (
 				62B2BB01275BC07000FDF3BE /* Extensions */,
 				62FDCAE4275B7D50009F8AD1 /* Network */,
+				62B2BB10275C9DE100FDF3BE /* Constants.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -191,6 +219,7 @@
 		62B43A9D275A7B7000F07C63 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				62B2BB0B275BFD4B00FDF3BE /* DocumentListService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -217,7 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				62B2BB04275BC57400FDF3BE /* AppNavigationController */,
-				62B43A6E275A7A1200F07C63 /* ViewController.swift */,
+				62B43A6E275A7A1200F07C63 /* DocumentListViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -374,17 +403,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				62B2BB03275BC07B00FDF3BE /* UIStoryboard.swift in Sources */,
+				62B2BB13275CA2B400FDF3BE /* UITextFieldExtension.swift in Sources */,
+				62B2BB11275C9DE100FDF3BE /* Constants.swift in Sources */,
 				62B2BB00275BBF3100FDF3BE /* URLEndPoint.swift in Sources */,
 				62FDCAF0275B944B009F8AD1 /* BaseResponse.swift in Sources */,
+				62B2BB15275CA4F100FDF3BE /* UiViewControllerExtension.swift in Sources */,
 				62FDCAEE275B93D4009F8AD1 /* Document.swift in Sources */,
 				62FDCAEC275B8A4C009F8AD1 /* Reachability.swift in Sources */,
 				62FDCAEA275B898E009F8AD1 /* HTTPHeader.swift in Sources */,
 				62B43AA4275A7C1000F07C63 /* NetworkManager.swift in Sources */,
-				62B43A6F275A7A1200F07C63 /* ViewController.swift in Sources */,
+				62B43A6F275A7A1200F07C63 /* DocumentListViewController.swift in Sources */,
 				62FDCAE8275B80B2009F8AD1 /* NetworkConstants.swift in Sources */,
+				62B2BB08275BCA0600FDF3BE /* UIViewExtension.swift in Sources */,
 				62B2BB06275BC57B00FDF3BE /* AppNavigationController.swift in Sources */,
 				62FDCAE6275B7D63009F8AD1 /* URLEncoding.swift in Sources */,
 				62B43A6B275A7A1200F07C63 /* AppDelegate.swift in Sources */,
+				62B2BB0F275C172200FDF3BE /* DocumentListViewModel.swift in Sources */,
+				62B2BB0A275BFB8500FDF3BE /* UITableViewExtension.swift in Sources */,
+				62B2BB0C275BFD4B00FDF3BE /* DocumentListService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
