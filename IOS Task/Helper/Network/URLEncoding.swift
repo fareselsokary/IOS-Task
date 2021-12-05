@@ -17,6 +17,9 @@ enum URLEncoding {
             let urlString = "\(baseUrl)\(endPoint)"
             var components = URLComponents()
             components.path = urlString
+            guard parameters?.isEmpty == false, parameters != nil else {
+                return (components.url?.absoluteString.removingPercentEncoding?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? urlString)
+            }
             components.queryItems = []
             if let params = parameters {
                 for key in params.keys {
