@@ -5,29 +5,36 @@
 //  Created by fares on 05/12/2021.
 //
 
+import Combine
+@testable import IOS_Task
 import XCTest
 
 class NetworkMangerTests: XCTestCase {
+    private var cancellables = Set<AnyCancellable>()
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testAPIRequest() throws {
+        // this is the URL we expect to call
+        let url = "https://www.apple.com/newsroom/rss-feed.rss"
 
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
+        let request: AnyPublisher<BaseResponse, NetworkError> = APIRequestManager.shared.request(path: url,
+                                                                                                 httpMethod: .get,
+                                                                                                 parameters: nil,
+                                                                                                 headers: nil)
 
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        XCUIApplication().launch()
+        request.sink { [weak self] completion in
+            switch completion {
+            case .finished:
+                self?.expectation(description: "Expected finish call request successfuly").fulfill()
+            case let .failure(error):
+                XCTFail("expexted to fail with" + error.localizedDescription)
+            }
+        } receiveValue: { [weak self] response in
+            if response.docs?.isEmpty == true {
+                self?.expectation(description: "Expected finish call request failure").fulfill()
+            } else {
+                self?.expectation(description: "Expected finish call request successfuly").fulfill()
+            }
 
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+        }.store(in: &cancellables)
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
 }

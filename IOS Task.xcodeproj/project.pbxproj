@@ -29,6 +29,9 @@
 		62B2BB2F275CFDB800FDF3BE /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B2BB2E275CFDB800FDF3BE /* String.swift */; };
 		62B2BB31275D1C5900FDF3BE /* DocumentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B2BB30275D1C5900FDF3BE /* DocumentTableViewCell.swift */; };
 		62B2BB33275D2ACB00FDF3BE /* URLEncodingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B2BB32275D2ACB00FDF3BE /* URLEncodingTests.swift */; };
+		62B2BB35275D30DF00FDF3BE /* TestReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B2BB34275D30DF00FDF3BE /* TestReachability.swift */; };
+		62B2BB37275D338C00FDF3BE /* NetworkMangerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B2BB36275D338C00FDF3BE /* NetworkMangerTests.swift */; };
+		62B2BB39275D3A8900FDF3BE /* DocumentListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B2BB38275D3A8900FDF3BE /* DocumentListViewModelTests.swift */; };
 		62B43A6B275A7A1200F07C63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B43A6A275A7A1200F07C63 /* AppDelegate.swift */; };
 		62B43A6F275A7A1200F07C63 /* DocumentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B43A6E275A7A1200F07C63 /* DocumentListViewController.swift */; };
 		62B43A72275A7A1200F07C63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62B43A70275A7A1200F07C63 /* Main.storyboard */; };
@@ -86,6 +89,9 @@
 		62B2BB2E275CFDB800FDF3BE /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		62B2BB30275D1C5900FDF3BE /* DocumentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentTableViewCell.swift; sourceTree = "<group>"; };
 		62B2BB32275D2ACB00FDF3BE /* URLEncodingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLEncodingTests.swift; sourceTree = "<group>"; };
+		62B2BB34275D30DF00FDF3BE /* TestReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestReachability.swift; sourceTree = "<group>"; };
+		62B2BB36275D338C00FDF3BE /* NetworkMangerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMangerTests.swift; sourceTree = "<group>"; };
+		62B2BB38275D3A8900FDF3BE /* DocumentListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentListViewModelTests.swift; sourceTree = "<group>"; };
 		62B43A67275A7A1200F07C63 /* IOS Task.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IOS Task.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		62B43A6A275A7A1200F07C63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		62B43A6E275A7A1200F07C63 /* DocumentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentListViewController.swift; sourceTree = "<group>"; };
@@ -236,7 +242,10 @@
 			isa = PBXGroup;
 			children = (
 				62B43A81275A7A1200F07C63 /* IOS_TaskTests.swift */,
+				62B2BB36275D338C00FDF3BE /* NetworkMangerTests.swift */,
+				62B2BB34275D30DF00FDF3BE /* TestReachability.swift */,
 				62B2BB32275D2ACB00FDF3BE /* URLEncodingTests.swift */,
+				62B2BB38275D3A8900FDF3BE /* DocumentListViewModelTests.swift */,
 			);
 			path = "IOS TaskTests";
 			sourceTree = "<group>";
@@ -507,7 +516,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				62B2BB35275D30DF00FDF3BE /* TestReachability.swift in Sources */,
 				62B2BB33275D2ACB00FDF3BE /* URLEncodingTests.swift in Sources */,
+				62B2BB37275D338C00FDF3BE /* NetworkMangerTests.swift in Sources */,
+				62B2BB39275D3A8900FDF3BE /* DocumentListViewModelTests.swift in Sources */,
 				62B43A82275A7A1200F07C63 /* IOS_TaskTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

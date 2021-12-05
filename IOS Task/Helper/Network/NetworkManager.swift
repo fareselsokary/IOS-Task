@@ -37,7 +37,7 @@ fileprivate protocol APIRequestProtocol {
     func request<T: Decodable>(path: String, httpMethod: HTTPMethod, parameters: Parameters?, headers: HTTPHeaders?) -> AnyPublisher<T, NetworkError>
 }
 
-fileprivate class APIRequestManager: APIRequestProtocol {
+class APIRequestManager: APIRequestProtocol {
     // create single entry for APIRequestManager
     static let shared = APIRequestManager()
 
@@ -73,7 +73,7 @@ extension APIRequestManager {
 
 extension APIRequestManager {
     // create URLRequest then call 'makeRequest' to make api using URLSession
-    fileprivate func request<T: Decodable>(path: String, httpMethod: HTTPMethod, parameters: Parameters?, headers: HTTPHeaders?) -> AnyPublisher<T, NetworkError> {
+    func request<T: Decodable>(path: String, httpMethod: HTTPMethod, parameters: Parameters?, headers: HTTPHeaders?) -> AnyPublisher<T, NetworkError> {
         // check if url is valid else return invalid url state
         guard let url = URL(string: path) else {
             return AnyPublisher(Fail<T, NetworkError>(error: .apiFailure))
